@@ -3,19 +3,20 @@ import static org.junit.Assert.assertFalse;
 import static org.junit.Assert.assertEquals;
 import static org.mockito.Mockito.*;
 
-import org.junit.Rule;
+import org.junit.Before;
 import org.junit.Test;
-import org.mockito.junit.MockitoRule;
-import org.mockito.junit.MockitoJUnit;
 
 public class TestCompute {
   Compute c;
   
-  @Mock
-  MessageQueue mq ;
+  MessageQueue mq;
 
-  @Rule
-  public MockitoRule rule = new MockitoJUnit.rule();
+  @Before
+  public void init()
+  {
+	mq = mock(MessageQueue.class);
+	c = new Compute(mq);
+  }
 
   @Test
   public void example() {
@@ -49,8 +50,8 @@ public class TestCompute {
   public void testForLoop()
   {
 	when(mq.size()).thenReturn(2);
-	when(mq.contains("asd")).thenReturn(true);
-	when(mq.getAt(any(Integer.class))).thenReturn("abc");
-	assertEquals(c.countNumberOfOccurrences("asd"), 2);
+	when(mq.contains("SuMeRkAn")).thenReturn(true);
+	when(mq.getAt(any(Integer.class))).thenReturn("SuMeRkAn");
+	assertEquals(c.countNumberOfOccurrences("SuMeRkAn"), 2);
   }
 }
