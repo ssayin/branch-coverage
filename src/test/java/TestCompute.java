@@ -53,5 +53,17 @@ public class TestCompute {
 	when(mq.contains("SuMeRkAn")).thenReturn(true);
 	when(mq.getAt(any(Integer.class))).thenReturn("SuMeRkAn");
 	assertEquals(c.countNumberOfOccurrences("SuMeRkAn"), 2);
+	verify(mq, times(2)).getAt(any(Integer.class));
+  }
+
+  @Test
+  public void testForLoop2()
+  {
+	when(mq.size()).thenReturn(30);
+	when(mq.contains("Hello")).thenReturn(true);
+	when(mq.getAt(3)).thenReturn("Hello");
+	assertEquals(c.countNumberOfOccurrences("Hello"), 1);
+	verify(mq, times(30)).getAt(any(Integer.class));
+	
   }
 }
